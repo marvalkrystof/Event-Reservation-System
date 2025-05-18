@@ -1,0 +1,83 @@
+<svg viewBox="0 0 1000 1200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1000" height="1200" fill="#f5f5f5"/>
+
+  <!-- Header (full-width) -->
+  <rect x="0" y="0" width="1000" height="60" fill="#333"/>
+  <!-- Logo -->
+  <rect x="20" y="10" width="80" height="40" fill="#ddd" stroke="#aaa"/>
+  <text x="60" y="35" fill="#fff" font-size="14" text-anchor="middle">LOGO</text>
+  <!-- Global Nav -->
+  <text x="200" y="35" fill="#fff" font-size="14" text-anchor="middle">Home</text>
+  <text x="340" y="35" fill="#fff" font-size="14" text-anchor="middle">My Orders</text>
+  <text x="480" y="35" fill="#fff" font-size="14" text-anchor="middle">Cart</text>
+  <text x="620" y="35" fill="#fff" font-size="14" text-anchor="middle">Logout</text>
+  <!-- Return to Site -->
+  <text x="760" y="35" fill="#2196F3" font-size="14" text-anchor="middle">Return to Site</text>
+
+  <!-- Sidebar (~20%) -->
+  <rect x="0" y="60" width="200" height="1140" fill="#fff" stroke="#ccc"/>
+  <!-- Sidebar Title -->
+  <text x="100" y="100" fill="#333" font-size="16" text-anchor="middle">Admin</text>
+  <!-- Menu Items -->
+  <text x="100" y="150" fill="#333" font-size="14" text-anchor="middle">Dashboard</text>
+  <rect x="0" y="160" width="200" height="40" fill="#4CAF50"/>
+  <text x="100" y="185" fill="#fff" font-size="14" text-anchor="middle">Events</text>
+  <text x="100" y="230" fill="#333" font-size="14" text-anchor="middle">Event Types</text>
+  <text x="100" y="270" fill="#333" font-size="14" text-anchor="middle">Seat Categories</text>
+
+
+  <!-- Main Content (~80%) -->
+  <!-- Title & Actions -->
+  <text x="600" y="100" fill="#333" font-size="24" text-anchor="middle">Edit Event: [Event Name]</text>
+  <!-- Toolbar Buttons -->
+  <rect x="400" y="120" width="120" height="30" fill="#4CAF50" rx="4"/>
+  <text x="460" y="142" fill="#fff" font-size="12" text-anchor="middle">Save Changes</text>
+  <rect x="530" y="120" width="80" height="30" fill="#bbb" rx="4"/>
+  <text x="570" y="142" fill="#fff" font-size="12" text-anchor="middle">Cancel</text>
+  <rect x="620" y="120" width="120" height="30" fill="#F44336" rx="4"/>
+  <text x="680" y="142" fill="#fff" font-size="12" text-anchor="middle">Delete Event</text>
+
+  <!-- Event Details Form (top half) -->
+  <!-- Form Background -->
+  <rect x="220" y="160" width="760" height="300" fill="#fff" stroke="#ccc" rx="6"/>
+  <!-- Title Field -->
+  <text x="240" y="190" fill="#333" font-size="14">Title</text>
+  <rect x="240" y="200" width="720" height="30" fill="#f0f0f0" stroke="#999"/>
+  <!-- Description Field -->
+  <text x="240" y="240" fill="#333" font-size="14">Description</text>
+  <rect x="240" y="250" width="720" height="70" fill="#f0f0f0" stroke="#999"/>
+  <!-- Date & Time -->
+  <text x="240" y="340" fill="#333" font-size="14">Start Date and Time</text>
+  <rect x="240" y="350" width="300" height="30" fill="#f0f0f0" stroke="#999"/>
+  <text x="580" y="340" fill="#333" font-size="14">End Date and Time</text>
+  <rect x="580" y="350" width="300" height="30" fill="#f0f0f0" stroke="#999"/>
+  <!-- Location -->
+  <text x="240" y="400" fill="#333" font-size="14">Location</text>
+  <rect x="240" y="410" width="300" height="30" fill="#f0f0f0" stroke="#999"/>
+  <!-- Event Type -->
+  <text x="580" y="400" fill="#333" font-size="14">Event Type</text>
+  <rect x="580" y="410" width="300" height="30" fill="#f0f0f0" stroke="#999"/>
+
+  <!-- Seating Grid Settings -->
+  <text x="240" y="490" fill="#333" font-size="14">Seating Grid Settings</text>
+  <text x="240" y="520" fill="#333" font-size="12">Rows</text>
+  <rect x="240" y="530" width="60" height="25" fill="#f0f0f0" stroke="#999"/>
+  <text x="340" y="520" fill="#333" font-size="12">Columns</text>
+  <rect x="340" y="530" width="60" height="25" fill="#f0f0f0" stroke="#999"/>
+  <rect x="420" y="525" width="120" height="30" fill="#4CAF50" rx="4"/>
+  <text x="480" y="545" fill="#fff" font-size="12" text-anchor="middle">Generate Grid</text>
+
+  <!-- Seating Layout Editor (bottom half) -->
+  <rect x="220" y="580" width="760" height="500" fill="#fff" stroke="#ccc"/>
+  <!-- Toolbar Above Canvas -->
+  <rect x="240" y="600" width="140" height="30" fill="#f0f0f0" stroke="#999"/>
+  <text x="310" y="620" fill="#333" font-size="12" text-anchor="middle">Category</text>
+  <rect x="400" y="600" width="140" height="30" fill="#f0f0f0" stroke="#999"/>
+  <text x="470" y="620" fill="#333" font-size="12" text-anchor="middle">Mode</text>
+  <!-- Canvas Placeholder -->
+  <text x="600" y="650" fill="#999" font-size="12" text-anchor="middle">[Interactive Seating Grid Canvas]</text>
+  <!-- Save Layout Button -->
+  <rect x="840" y="1060" width="140" height="30" fill="#4CAF50" rx="4"/>
+  <text x="910" y="1080" fill="#fff" font-size="12" text-anchor="middle">Save Layout</text>
+</svg>

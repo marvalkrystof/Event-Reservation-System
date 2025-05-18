@@ -1,0 +1,56 @@
+<svg viewBox="0 0 900 800" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="900" height="800" fill="#f5f5f5"/>
+
+  <!-- Header -->
+  <rect x="0" y="0" width="900" height="60" fill="#333"/>
+  <!-- Logo -->
+  <rect x="20" y="10" width="80" height="40" fill="#ddd" stroke="#aaa"/>
+  <text x="60" y="35" fill="#fff" font-size="14" text-anchor="middle">LOGO</text>
+  <!-- Navigation -->
+  <text x="160" y="35" fill="#fff" font-size="14" text-anchor="middle">Home</text>
+
+  <!-- Highlighted My Orders -->
+  <rect x="400" y="15" width="100" height="30" fill="#555"/>
+  <text x="450" y="35" fill="#fff" font-size="14" text-anchor="middle">My Orders</text>
+  <text x="540" y="35" fill="#fff" font-size="14" text-anchor="middle">Cart</text>
+  <!-- Profile/Logout -->
+  <text x="800" y="35" fill="#fff" font-size="14" text-anchor="middle">User</text>
+  <text x="860" y="35" fill="#fff" font-size="14" text-anchor="middle">Logout</text>
+
+  <!-- Main Content -->
+  <!-- Title & Tabs -->
+  <text x="450" y="100" text-anchor="middle" fill="#333" font-size="24">My Orders</text>
+
+  <!-- Orders List: Card Layout -->
+  <!-- Card 1 -->
+  <rect x="100" y="180" width="700" height="100" fill="#fff" stroke="#ccc" rx="6"/>
+  <text x="120" y="210" fill="#333" font-size="14">Order #12345</text>
+  <text x="120" y="230" fill="#666" font-size="12">Event: Concert Night • June 5, 2025</text>
+  <text x="120" y="250" fill="#666" font-size="12">Seats: A1, A2</text>
+  <text x="400" y="230" fill="#333" font-size="14" text-anchor="middle">Total: $100</text>
+  <!-- Status Badge -->
+  <rect x="650" y="200" width="80" height="30" fill="#8BC34A" rx="4"/>
+  <text x="690" y="220" fill="#fff" font-size="12" text-anchor="middle">Paid</text>
+  <!-- Actions -->
+  <text x="600" y="255" fill="#2196F3" font-size="12">View Details</text>
+  <text x="700" y="255" fill="#2196F3" font-size="12">Download Tickets</text>
+
+  <!-- Card 2 -->
+  <rect x="100" y="300" width="700" height="100" fill="#fff" stroke="#ccc" rx="6"/>
+  <text x="120" y="330" fill="#333" font-size="14">Order #12344</text>
+  <text x="120" y="350" fill="#666" font-size="12">Event: Theater Play • May 20, 2025</text>
+  <text x="120" y="370" fill="#666" font-size="12">Seats: B5</text>
+  <text x="400" y="350" fill="#333" font-size="14" text-anchor="middle">Total: $50</text>
+  <!-- Status Badge -->
+  <rect x="650" y="320" width="80" height="30" fill="#F44336" rx="4"/>
+  <text x="690" y="340" fill="#fff" font-size="12" text-anchor="middle">Canceled</text>
+  <!-- Actions -->
+  <text x="650" y="385" fill="#2196F3" font-size="12">View Details</text>
+
+  <!-- Pagination -->
+  <rect x="350" y="430" width="80" height="30" fill="#fff" stroke="#999" rx="4"/>
+  <text x="390" y="450" fill="#333" font-size="12" text-anchor="middle">Prev</text>
+  <rect x="440" y="430" width="80" height="30" fill="#fff" stroke="#999" rx="4"/>
+  <text x="480" y="450" fill="#333" font-size="12" text-anchor="middle">Next</text>
+</svg>

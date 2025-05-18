@@ -1,0 +1,40 @@
+<svg viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="900" height="600" fill="#f5f5f5"/>
+
+  <!-- Header -->
+  <rect x="0" y="0" width="900" height="60" fill="#333"/>
+  <!-- Logo -->
+  <rect x="20" y="10" width="80" height="40" fill="#ddd" stroke="#aaa"/>
+  <text x="60" y="35" fill="#fff" font-size="14" text-anchor="middle">LOGO</text>
+  <!-- Navigation -->
+  <text x="160" y="35" fill="#fff" font-size="14" text-anchor="middle">Home</text>
+  <!-- Auth Links -->
+  <text x="760" y="35" fill="#fff" font-size="14" text-anchor="middle">Register</text>
+  <!-- Replace 'Register' with 'Profile' + 'Logout' when signed in -->
+
+  <!-- Main Content: Login Form -->
+  <!-- Form Background -->
+  <rect x="150" y="100" width="600" height="400" fill="#fff" stroke="#ccc" rx="8"/>
+  <!-- Form Heading -->
+  <text x="450" y="150" text-anchor="middle" fill="#333" font-size="24">Login</text>
+
+  <!-- Email Field -->
+  <text x="200" y="210" fill="#333" font-size="14">Email</text>
+  <rect x="200" y="220" width="500" height="40" fill="#f0f0f0" stroke="#999"/>
+
+  <!-- Password Field -->
+  <text x="200" y="290" fill="#333" font-size="14">Password</text>
+  <rect x="200" y="300" width="500" height="40" fill="#f0f0f0" stroke="#999"/>
+
+  <!-- Remember Me Checkbox -->
+  <rect x="200" y="360" width="20" height="20" fill="#fff" stroke="#999"/>
+  <text x="230" y="375" fill="#333" font-size="12">Remember me</text>
+
+  <!-- Sign In Button -->
+  <rect x="200" y="410" width="500" height="50" fill="#4CAF50" rx="5"/>
+  <text x="450" y="445" fill="#fff" font-size="16" text-anchor="middle">Sign In</text>
+
+  <!-- Register Link -->
+  <text x="450" y="490" fill="#666" font-size="12" text-anchor="middle">Don’t have an account? <tspan fill="#2196F3">Register here.</tspan></text>
+</svg>
