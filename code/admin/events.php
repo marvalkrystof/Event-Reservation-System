@@ -140,9 +140,12 @@ $events = [];
 if ($action === 'list') {
     $events = $eventModel->getAllEvents(true); // Include past events
     // Check which events have seating plans
-    foreach ($events as &$event) {
+    $processedEvents = [];
+    foreach ($events as $event) {
         $event->has_seating_plan = $seatModel->getSeatingPlanForEvent($event->id) ? true : false;
+        $processedEvents[] = $event;
     }
+    $events = $processedEvents;
 }
 
 // Handle seating plan creation

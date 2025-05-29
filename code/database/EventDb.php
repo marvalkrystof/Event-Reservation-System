@@ -25,7 +25,7 @@ class EventDb
      */
     public function getAllEvents($includeEnded = false)
     {
-        $sql = "SELECT e.*, et.name as event_type_name 
+        $sql = "SELECT DISTINCT e.*, et.name as event_type_name 
                 FROM sp_events e
                 JOIN sp_event_types et ON e.event_type_id = et.id";
 
