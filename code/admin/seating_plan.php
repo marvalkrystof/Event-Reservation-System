@@ -123,7 +123,7 @@ include '../views/admin_header.php';
         <div class="col-md-12">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h1>Seating Plan: <?php echo escape($event->title); ?></h1>
-                <a href="<?php echo SITE_URL; ?>/admin/events.php?action=edit&id=<?php echo $eventId; ?>" class="btn btn-secondary">
+                <a href="<?php echo SITE_URL; ?>admin/events.php?action=edit&id=<?php echo $eventId; ?>" class="btn btn-secondary">
                     <i class="fas fa-arrow-left"></i> Back to Event
                 </a>
             </div>
@@ -135,7 +135,7 @@ include '../views/admin_header.php';
                         <h4 class="mb-0">Create Seating Layout</h4>
                     </div>
                     <div class="card-body">
-                        <form method="post" action="<?php echo SITE_URL; ?>/admin/seating_plan.php?event_id=<?php echo $eventId; ?>" class="create-layout-form">
+                        <form method="post" action="<?php echo SITE_URL; ?>admin/seating_plan.php?event_id=<?php echo $eventId; ?>" class="create-layout-form">
                             <input type="hidden" name="csrf_token" value="<?php echo generateCSRFToken(); ?>">
 
                             <div class="form-row">
@@ -270,7 +270,7 @@ include '../views/admin_header.php';
                                             <strong>Instructions:</strong> Click on seats to select/deselect them, then assign a category to all selected seats.
                                         </div>
 
-                                        <form method="post" action="<?php echo SITE_URL; ?>/admin/seating_plan.php?event_id=<?php echo $eventId; ?>">
+                                        <form method="post" action="<?php echo SITE_URL; ?>admin/seating_plan.php?event_id=<?php echo $eventId; ?>">
                                             <input type="hidden" name="csrf_token" value="<?php echo generateCSRFToken(); ?>">
                                             <input type="hidden" id="selected_seats" name="selected_seats" value="">
 
@@ -378,7 +378,7 @@ include '../views/admin_header.php';
 </style>
 
 <!-- Include admin seating plan script -->
-<script src="<?php echo SITE_URL; ?>/assets/js/admin-seating-plan.js"></script>
+<script src="<?php echo SITE_URL; ?>assets/js/admin-seating-plan.js"></script>
 
 <script>
     // Make PHP constants available to JavaScript

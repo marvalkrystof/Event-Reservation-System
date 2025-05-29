@@ -130,7 +130,7 @@ include '../views/admin_header.php';
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h1><?php echo $action === 'list' ? 'Seat Categories Management' : ($action === 'create' ? 'Create Seat Category' : 'Edit Seat Category'); ?></h1>
                 <?php if ($action === 'list'): ?>
-                    <a href="<?php echo SITE_URL; ?>/admin/seat_categories.php?action=create" class="btn btn-primary">
+                    <a href="<?php echo SITE_URL; ?>admin/seat_categories.php?action=create" class="btn btn-primary">
                         <i class="fas fa-plus-circle"></i> Create Seat Category
                     </a>
                 <?php endif; ?>
@@ -163,7 +163,7 @@ include '../views/admin_header.php';
                                                 <td>$<?php echo number_format($category->price, 2); ?></td>
                                                 <td>
                                                     <div class="btn-group btn-group-sm">
-                                                        <a href="<?php echo SITE_URL; ?>/admin/seat_categories.php?action=edit&id=<?php echo $category->id; ?>" class="btn btn-primary" title="Edit">
+                                                        <a href="<?php echo SITE_URL; ?>admin/seat_categories.php?action=edit&id=<?php echo $category->id; ?>" class="btn btn-primary" title="Edit">
                                                             <i class="fas fa-edit"></i>
                                                         </a>
                                                         <button type="button" class="btn btn-danger" title="Delete" data-toggle="modal" data-target="#deleteModal<?php echo $category->id; ?>">
@@ -187,7 +187,7 @@ include '../views/admin_header.php';
                                                                 </div>
                                                                 <div class="modal-footer">
                                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                                                    <form method="post" action="<?php echo SITE_URL; ?>/admin/seat_categories.php?action=delete&id=<?php echo $category->id; ?>">
+                                                                    <form method="post" action="<?php echo SITE_URL; ?>admin/seat_categories.php?action=delete&id=<?php echo $category->id; ?>">
                                                                         <input type="hidden" name="csrf_token" value="<?php echo generateCSRFToken(); ?>">
                                                                         <button type="submit" class="btn btn-danger">Delete</button>
                                                                     </form>
@@ -215,7 +215,7 @@ include '../views/admin_header.php';
                         $formData = $_SESSION['form_data'] ?? null;
                         unset($_SESSION['form_data']); // Clear stored data after retrieving
                         ?>
-                        <form method="post" action="<?php echo SITE_URL; ?>/admin/seat_categories.php?action=<?php echo $action; ?><?php echo $categoryId ? '&id=' . $categoryId : ''; ?>">
+                        <form method="post" action="<?php echo SITE_URL; ?>admin/seat_categories.php?action=<?php echo $action; ?><?php echo $categoryId ? '&id=' . $categoryId : ''; ?>">
                             <input type="hidden" name="csrf_token" value="<?php echo generateCSRFToken(); ?>">
                             <?php if ($action === 'edit'): ?>
                                 <input type="hidden" name="version" value="<?php echo $seatCategory->version; ?>">
@@ -241,7 +241,7 @@ include '../views/admin_header.php';
 
                             <div class="form-group mt-4">
                                 <button type="submit" class="btn btn-primary">Save Seat Category</button>
-                                <a href="<?php echo SITE_URL; ?>/admin/seat_categories.php" class="btn btn-secondary ml-2">Cancel</a>
+                                <a href="<?php echo SITE_URL; ?>admin/seat_categories.php" class="btn btn-secondary ml-2">Cancel</a>
                             </div>
                         </form>
                     </div>

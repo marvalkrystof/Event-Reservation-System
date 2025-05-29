@@ -126,7 +126,7 @@ include '../views/admin_header.php';
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h1><?php echo $action === 'list' ? 'Event Types Management' : ($action === 'create' ? 'Create Event Type' : 'Edit Event Type'); ?></h1>
                 <?php if ($action === 'list'): ?>
-                    <a href="<?php echo SITE_URL; ?>/admin/event_types.php?action=create" class="btn btn-primary">
+                    <a href="<?php echo SITE_URL; ?>admin/event_types.php?action=create" class="btn btn-primary">
                         <i class="fas fa-plus-circle"></i> Create Event Type
                     </a>
                 <?php endif; ?>
@@ -154,7 +154,7 @@ include '../views/admin_header.php';
                                             <td><?php echo htmlspecialchars($type['name'], ENT_QUOTES, 'UTF-8'); ?></td>
                                             <td>
                                                 <div class="btn-group btn-group-sm">
-                                                    <a href="<?php echo SITE_URL; ?>/admin/event_types.php?action=edit&id=<?php echo $type['id']; ?>" class="btn btn-primary" title="Edit">
+                                                    <a href="<?php echo SITE_URL; ?>admin/event_types.php?action=edit&id=<?php echo $type['id']; ?>" class="btn btn-primary" title="Edit">
                                                         <i class="fas fa-edit"></i>
                                                     </a>
                                                     <button type="button" class="btn btn-danger" title="Delete" data-toggle="modal" data-target="#deleteModal<?php echo $type['id']; ?>">
@@ -177,7 +177,7 @@ include '../views/admin_header.php';
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                                                <form method="post" action="<?php echo SITE_URL; ?>/admin/event_types.php?action=delete&id=<?php echo $type['id']; ?>">
+                                                                <form method="post" action="<?php echo SITE_URL; ?>admin/event_types.php?action=delete&id=<?php echo $type['id']; ?>">
                                                                     <input type="hidden" name="csrf_token" value="<?php echo generateCSRFToken(); ?>">
                                                                     <button type="submit" class="btn btn-danger">Delete</button>
                                                                 </form>
@@ -204,7 +204,7 @@ include '../views/admin_header.php';
                         $formData = $_SESSION['form_data'] ?? null;
                         unset($_SESSION['form_data']); // Clear stored data after retrieving
                         ?>
-                        <form method="post" action="<?php echo SITE_URL; ?>/admin/event_types.php?action=<?php echo $action; ?><?php echo $typeId ? '&id=' . $typeId : ''; ?>">
+                        <form method="post" action="<?php echo SITE_URL; ?>admin/event_types.php?action=<?php echo $action; ?><?php echo $typeId ? '&id=' . $typeId : ''; ?>">
                             <input type="hidden" name="csrf_token" value="<?php echo generateCSRFToken(); ?>">
                             <?php if ($action === 'edit'): ?>
                                 <input type="hidden" name="version" value="<?php echo $eventType['version']; ?>">
@@ -218,7 +218,7 @@ include '../views/admin_header.php';
 
                             <div class="form-group mt-4">
                                 <button type="submit" class="btn btn-primary">Save Event Type</button>
-                                <a href="<?php echo SITE_URL; ?>/admin/event_types.php" class="btn btn-secondary ml-2">Cancel</a>
+                                <a href="<?php echo SITE_URL; ?>admin/event_types.php" class="btn btn-secondary ml-2">Cancel</a>
                             </div>
                         </form>
                     </div>

@@ -161,7 +161,7 @@ include '../views/admin_header.php';
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h1><?php echo $action === 'list' ? 'Events Management' : ($action === 'create' ? 'Create Event' : 'Edit Event'); ?></h1>
                 <?php if ($action === 'list'): ?>
-                    <a href="<?php echo SITE_URL; ?>/admin/events.php?action=create" class="btn btn-primary">
+                    <a href="<?php echo SITE_URL; ?>admin/events.php?action=create" class="btn btn-primary">
                         <i class="fas fa-plus-circle"></i> Create Event
                     </a>
                 <?php endif; ?>
@@ -198,18 +198,18 @@ include '../views/admin_header.php';
                                                 <td><?php echo escape($event->location); ?></td>
                                                 <td>
                                                     <div class="btn-group btn-group-sm">
-                                                        <a href="<?php echo SITE_URL; ?>/admin/events.php?action=edit&id=<?php echo $event->id; ?>" class="btn btn-primary" title="Edit">
+                                                        <a href="<?php echo SITE_URL; ?>admin/events.php?action=edit&id=<?php echo $event->id; ?>" class="btn btn-primary" title="Edit">
                                                             <i class="fas fa-edit"></i>
                                                         </a>
-                                                        <a href="<?php echo SITE_URL; ?>/event.php?id=<?php echo $event->id; ?>" class="btn btn-info" title="View" target="_blank">
+                                                        <a href="<?php echo SITE_URL; ?>event.php?id=<?php echo $event->id; ?>" class="btn btn-info" title="View" target="_blank">
                                                             <i class="fas fa-eye"></i>
                                                         </a>
                                                         <?php if (!$event->has_seating_plan): ?>
-                                                            <a href="<?php echo SITE_URL; ?>/admin/events.php?action=create_seating_plan&id=<?php echo $event->id; ?>" class="btn btn-success" title="Create Seating Plan">
+                                                            <a href="<?php echo SITE_URL; ?>admin/events.php?action=create_seating_plan&id=<?php echo $event->id; ?>" class="btn btn-success" title="Create Seating Plan">
                                                                 <i class="fas fa-chair"></i>
                                                             </a>
                                                         <?php else: ?>
-                                                            <a href="<?php echo SITE_URL; ?>/admin/seating_plan.php?event_id=<?php echo $event->id; ?>" class="btn btn-warning" title="Edit Seating Plan">
+                                                            <a href="<?php echo SITE_URL; ?>admin/seating_plan.php?event_id=<?php echo $event->id; ?>" class="btn btn-warning" title="Edit Seating Plan">
                                                                 <i class="fas fa-chair"></i>
                                                             </a>
                                                         <?php endif; ?>
@@ -233,7 +233,7 @@ include '../views/admin_header.php';
                                                                 </div>
                                                                 <div class="modal-footer">
                                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                                                    <form method="post" action="<?php echo SITE_URL; ?>/admin/events.php?action=delete&id=<?php echo $event->id; ?>">
+                                                                    <form method="post" action="<?php echo SITE_URL; ?>admin/events.php?action=delete&id=<?php echo $event->id; ?>">
                                                                         <input type="hidden" name="csrf_token" value="<?php echo generateCSRFToken(); ?>">
                                                                         <button type="submit" class="btn btn-danger">Delete</button>
                                                                     </form>
@@ -261,7 +261,7 @@ include '../views/admin_header.php';
                         $formData = $_SESSION['form_data'] ?? null;
                         unset($_SESSION['form_data']); // Clear stored data after retrieving
                         ?>
-                        <form method="post" action="<?php echo SITE_URL; ?>/admin/events.php?action=<?php echo $action; ?><?php echo $eventId ? '&id=' . $eventId : ''; ?>">
+                        <form method="post" action="<?php echo SITE_URL; ?>admin/events.php?action=<?php echo $action; ?><?php echo $eventId ? '&id=' . $eventId : ''; ?>">
                             <input type="hidden" name="csrf_token" value="<?php echo generateCSRFToken(); ?>">
                             <?php if ($action === 'edit'): ?>
                                 <input type="hidden" name="version" value="<?php echo $event->version; ?>">
@@ -312,7 +312,7 @@ include '../views/admin_header.php';
 
                             <div class="form-group mt-4">
                                 <button type="submit" class="btn btn-primary">Save Event</button>
-                                <a href="<?php echo SITE_URL; ?>/admin/events.php" class="btn btn-secondary ml-2">Cancel</a>
+                                <a href="<?php echo SITE_URL; ?>admin/events.php" class="btn btn-secondary ml-2">Cancel</a>
                             </div>
                         </form>
                     </div>
