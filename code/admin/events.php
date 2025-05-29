@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Check CSRF token
     if (!checkCSRFToken()) {
         setFlashMessage('error', 'Invalid security token. Please try again.');
-        redirect(SITE_URL . '/admin/events.php');
+        redirect(SITE_URL . 'admin/events.php');
     }
 
     // Handle event creation
@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Validate required fields
         if (empty($title) || empty($startDateTime) || empty($endDateTime) || $eventTypeId <= 0) {
             setFlashMessage('error', 'All required fields must be filled in.');
-            redirect(SITE_URL . '/admin/events.php?action=' . $action . ($eventId ? '&id=' . $eventId : ''));
+            redirect(SITE_URL . 'admin/events.php?action=' . $action . ($eventId ? '&id=' . $eventId : ''));
         }
 
         $eventData = [
@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $result = $eventModel->createEvent($eventData);
             if ($result) {
                 setFlashMessage('success', 'Event created successfully.');
-                redirect(SITE_URL . '/admin/events.php?action=edit&id=' . $result);
+                redirect(SITE_URL . 'admin/events.php?action=edit&id=' . $result);
             }
         } else if ($action === 'edit' && $eventId) {
             // Add version for optimistic locking
@@ -97,10 +97,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     'end_datetime' => $endDateTime,
                     'location' => $location
                 ];
-                redirect(SITE_URL . '/admin/events.php?action=edit&id=' . $eventId);
+                redirect(SITE_URL . 'admin/events.php?action=edit&id=' . $eventId);
             } else if ($result) {
                 setFlashMessage('success', 'Event updated successfully.');
-                redirect(SITE_URL . '/admin/events.php?action=edit&id=' . $eventId);
+                redirect(SITE_URL . 'admin/events.php?action=edit&id=' . $eventId);
             }
         }
 
@@ -116,7 +116,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             setFlashMessage('error', 'There was an error deleting the event.');
         }
-        redirect(SITE_URL . '/admin/events.php');
+        redirect(SITE_URL . 'admin/events.php');
     }
 }
 
@@ -129,7 +129,7 @@ if ($action === 'edit' && $eventId) {
     $event = $eventModel->getEventById($eventId);
     if (!$event) {
         setFlashMessage('error', 'Event not found.');
-        redirect(SITE_URL . '/admin/events.php');
+        redirect(SITE_URL . 'admin/events.php');
     }
     // Check if event has a seating plan
     $hasSeatPlan = $seatModel->getSeatingPlanForEvent($eventId);
@@ -148,7 +148,7 @@ if ($action === 'list') {
 // Handle seating plan creation
 if ($action === 'create_seating_plan' && $eventId) {
     // Redirect to seating plan editor
-    redirect(SITE_URL . '/admin/seating_plan.php?event_id=' . $eventId);
+    redirect(SITE_URL . 'admin/seating_plan.php?event_id=' . $eventId);
 }
 
 // Include the header

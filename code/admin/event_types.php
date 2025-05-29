@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Check CSRF token
     if (!checkCSRFToken()) {
         setFlashMessage('error', 'Invalid security token. Please try again.');
-        redirect(SITE_URL . '/admin/event_types.php');
+        redirect(SITE_URL . 'admin/event_types.php');
     }
 
     // Handle event type creation/update
@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Validate required fields
         if (empty($name)) {
             setFlashMessage('error', 'Name is required.');
-            redirect(SITE_URL . '/admin/event_types.php?action=' . $action . ($typeId ? '&id=' . $typeId : ''));
+            redirect(SITE_URL . 'admin/event_types.php?action=' . $action . ($typeId ? '&id=' . $typeId : ''));
         }
 
         $typeData = [
@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $result = $eventModel->createEventType($typeData);
             if ($result) {
                 setFlashMessage('success', 'Event type created successfully.');
-                redirect(SITE_URL . '/admin/event_types.php');
+                redirect(SITE_URL . 'admin/event_types.php');
             }
         } else if ($action === 'edit' && $typeId) {
             // Add version for optimistic locking
@@ -70,10 +70,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $_SESSION['form_data'] = [
                     'name' => $name
                 ];
-                redirect(SITE_URL . '/admin/event_types.php?action=edit&id=' . $typeId);
+                redirect(SITE_URL . 'admin/event_types.php?action=edit&id=' . $typeId);
             } else if ($result) {
                 setFlashMessage('success', 'Event type updated successfully.');
-                redirect(SITE_URL . '/admin/event_types.php');
+                redirect(SITE_URL . 'admin/event_types.php');
             }
         }
 
@@ -88,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $eventsUsingType = $eventModel->getEventsByTypeId($typeId);
         if (!empty($eventsUsingType)) {
             setFlashMessage('error', 'This event type cannot be deleted because it is used by existing events.');
-            redirect(SITE_URL . '/admin/event_types.php');
+            redirect(SITE_URL . 'admin/event_types.php');
         }
 
         if ($eventModel->deleteEventType($typeId)) {
@@ -96,7 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             setFlashMessage('error', 'There was an error deleting the event type.');
         }
-        redirect(SITE_URL . '/admin/event_types.php');
+        redirect(SITE_URL . 'admin/event_types.php');
     }
 }
 
@@ -106,7 +106,7 @@ if ($action === 'edit' && $typeId) {
     $eventType = $eventModel->getEventTypeById($typeId);
     if (!$eventType) {
         setFlashMessage('error', 'Event type not found.');
-        redirect(SITE_URL . '/admin/event_types.php');
+        redirect(SITE_URL . 'admin/event_types.php');
     }
 }
 

@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Check CSRF token
     if (!checkCSRFToken()) {
         setFlashMessage('error', 'Invalid security token. Please try again.');
-        redirect(SITE_URL . '/admin/seat_categories.php');
+        redirect(SITE_URL . 'admin/seat_categories.php');
     }
 
     // Handle seat category creation/update
@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Validate required fields
         if (empty($name) || $price <= 0) {
             setFlashMessage('error', 'Name and price (greater than 0) are required.');
-            redirect(SITE_URL . '/admin/seat_categories.php?action=' . $action . ($categoryId ? '&id=' . $categoryId : ''));
+            redirect(SITE_URL . 'admin/seat_categories.php?action=' . $action . ($categoryId ? '&id=' . $categoryId : ''));
         }
 
         $categoryData = [
@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $result = $seatModel->createSeatCategory($categoryData);
             if ($result) {
                 setFlashMessage('success', 'Seat category created successfully.');
-                redirect(SITE_URL . '/admin/seat_categories.php');
+                redirect(SITE_URL . 'admin/seat_categories.php');
             }
         } else if ($action === 'edit' && $categoryId) {
             // Add version for optimistic locking
@@ -73,16 +73,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     'name' => $name,
                     'price' => $price
                 ];
-                redirect(SITE_URL . '/admin/seat_categories.php?action=edit&id=' . $categoryId);
+                redirect(SITE_URL . 'admin/seat_categories.php?action=edit&id=' . $categoryId);
             } else if ($result) {
                 setFlashMessage('success', 'Seat category updated successfully.');
-                redirect(SITE_URL . '/admin/seat_categories.php');
+                redirect(SITE_URL . 'admin/seat_categories.php');
             }
         }
 
         if (!$result) {
             setFlashMessage('error', 'There was an error saving the seat category.');
-            redirect(SITE_URL . '/admin/seat_categories.php?action=' . $action . ($categoryId ? '&id=' . $categoryId : ''));
+            redirect(SITE_URL . 'admin/seat_categories.php?action=' . $action . ($categoryId ? '&id=' . $categoryId : ''));
         }
     }
 
@@ -92,7 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $seatsUsingCategory = $seatModel->getSeatsByCategoryId($categoryId);
         if (!empty($seatsUsingCategory)) {
             setFlashMessage('error', 'This seat category cannot be deleted because it is used by existing seats.');
-            redirect(SITE_URL . '/admin/seat_categories.php');
+            redirect(SITE_URL . 'admin/seat_categories.php');
         }
 
         if ($seatModel->deleteSeatCategory($categoryId)) {
@@ -100,7 +100,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             setFlashMessage('error', 'There was an error deleting the seat category.');
         }
-        redirect(SITE_URL . '/admin/seat_categories.php');
+        redirect(SITE_URL . 'admin/seat_categories.php');
     }
 }
 
@@ -110,7 +110,7 @@ if ($action === 'edit' && $categoryId) {
     $seatCategory = $seatModel->getSeatCategoryById($categoryId);
     if (!$seatCategory) {
         setFlashMessage('error', 'Seat category not found.');
-        redirect(SITE_URL . '/admin/seat_categories.php');
+        redirect(SITE_URL . 'admin/seat_categories.php');
     }
 }
 

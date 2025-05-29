@@ -26,19 +26,19 @@ if ($eventId) {
     $event = $eventModel->getEventById($eventId);
     if (!$event) {
         setFlashMessage('error', 'Event not found.');
-        redirect(SITE_URL . '/admin/events.php');
+        redirect(SITE_URL . 'admin/events.php');
     }
 
     // Check if seating plan is being edited by another user
     if ($eventModel->isLocked($eventId, $_SESSION['user_id'])) {
         setFlashMessage('error', 'The seating plan is currently being modified by another administrator. Please try again later.');
-        redirect(SITE_URL . '/admin/events.php');
+        redirect(SITE_URL . 'admin/events.php');
     }
 
     // Acquire lock for this session
     if (!$eventModel->acquireLock($eventId, $_SESSION['user_id'])) {
         setFlashMessage('error', 'Could not acquire lock for editing. Please try again.');
-        redirect(SITE_URL . '/admin/events.php');
+        redirect(SITE_URL . 'admin/events.php');
     }
 }
 
@@ -58,13 +58,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Check CSRF token
     if (!checkCSRFToken()) {
         setFlashMessage('error', 'Invalid security token. Please try again.');
-        redirect(SITE_URL . '/admin/seating_plan.php?event_id=' . $eventId);
+        redirect(SITE_URL . 'admin/seating_plan.php?event_id=' . $eventId);
     }
 
     // Check if we still have the lock - only for existing seating plans
     if ($hasSeatPlan && $eventModel->isLocked($eventId, $_SESSION['user_id'])) {
         setFlashMessage('error', 'The seating plan is currently being modified by another administrator. Please try again in a moment.');
-        redirect(SITE_URL . '/admin/events.php');
+        redirect(SITE_URL . 'admin/events.php');
     }
 
     // Create initial seating layout
@@ -75,15 +75,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($rows < 1 || $cols < 1 || $categoryId < 1) {
             setFlashMessage('error', 'Invalid layout parameters.');
-            redirect(SITE_URL . '/admin/seating_plan.php?event_id=' . $eventId);
+            redirect(SITE_URL . 'admin/seating_plan.php?event_id=' . $eventId);
         } else {
             $seatsCreated = $seatModel->createSeatingLayout($eventId, $rows, $cols, $categoryId);
             if ($seatsCreated > 0) {
                 setFlashMessage('success', $seatsCreated . ' seats have been created.');
-                redirect(SITE_URL . '/admin/seating_plan.php?event_id=' . $eventId);
+                redirect(SITE_URL . 'admin/seating_plan.php?event_id=' . $eventId);
             } else {
                 setFlashMessage('error', 'Failed to create seating layout.');
-                redirect(SITE_URL . '/admin/seating_plan.php?event_id=' . $eventId);
+                redirect(SITE_URL . 'admin/seating_plan.php?event_id=' . $eventId);
             }
         }
     }
@@ -104,7 +104,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             setFlashMessage('error', 'Invalid parameters. Please select seats and a category.');
         }
-        redirect(SITE_URL . '/admin/seating_plan.php?event_id=' . $eventId);
+        redirect(SITE_URL . 'admin/seating_plan.php?event_id=' . $eventId);
     }
 }
 
