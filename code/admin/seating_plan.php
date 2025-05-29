@@ -183,6 +183,44 @@ include '../views/admin_header.php';
                                     <?php endforeach; ?>
                                 </ul>
                             </div>
+                            <!-- Modify Dimensions Button -->
+                            <button type="button" class="btn btn-warning btn-block mb-4" data-toggle="modal" data-target="#modifyDimensionsModal">
+                                <i class="fas fa-ruler-combined"></i> Modify Dimensions
+                            </button>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header bg-primary text-white">
+                                <h5 class="mb-0">Assign Category to Selected Seats</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="alert alert-info">
+                                    <strong>Instructions:</strong> Click on seats to select/deselect them, then assign a category to all selected seats.
+                                </div>
+
+                                <form method="post" action="<?php echo SITE_URL; ?>admin/seating_plan.php?event_id=<?php echo $eventId; ?>">
+                                    <input type="hidden" name="csrf_token" value="<?php echo generateCSRFToken(); ?>">
+                                    <input type="hidden" id="selected_seats" name="selected_seats" value="">
+
+                                    <div class="form-group">
+                                        <label for="multi_category_id">Category for <span id="selected-count">0</span> Selected Seats</label>
+                                        <select class="form-control" id="multi_category_id" name="multi_category_id">
+                                            <?php foreach ($categories as $category): ?>
+                                                <option value="<?php echo $category->id; ?>"><?php echo escape($category->name); ?> (<?php echo formatCurrency($category->price); ?>)</option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+
+                                    <div class="d-flex justify-content-between">
+                                        <button type="submit" id="update_multiple_seats" name="update_multiple_seats" class="btn btn-primary btn-lg" disabled>
+                                            <i class="fas fa-save"></i> Save Changes
+                                        </button>
+                                        <button type="button" id="clear-selection" class="btn btn-secondary">
+                                            <i class="fas fa-times"></i> Clear Selection
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
 
@@ -257,41 +295,6 @@ include '../views/admin_header.php';
                                                 </tbody>
                                             </table>
                                         </div>
-                                    </div>
-                                </div>
-
-                                <!-- Seat Category Management -->
-                                <div class="card mt-3">
-                                    <div class="card-header bg-primary text-white">
-                                        <h5 class="mb-0">Assign Category to Selected Seats</h5>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="alert alert-info">
-                                            <strong>Instructions:</strong> Click on seats to select/deselect them, then assign a category to all selected seats.
-                                        </div>
-
-                                        <form method="post" action="<?php echo SITE_URL; ?>admin/seating_plan.php?event_id=<?php echo $eventId; ?>">
-                                            <input type="hidden" name="csrf_token" value="<?php echo generateCSRFToken(); ?>">
-                                            <input type="hidden" id="selected_seats" name="selected_seats" value="">
-
-                                            <div class="form-group">
-                                                <label for="multi_category_id">Category for <span id="selected-count">0</span> Selected Seats</label>
-                                                <select class="form-control" id="multi_category_id" name="multi_category_id">
-                                                    <?php foreach ($categories as $category): ?>
-                                                        <option value="<?php echo $category->id; ?>"><?php echo escape($category->name); ?> (<?php echo formatCurrency($category->price); ?>)</option>
-                                                    <?php endforeach; ?>
-                                                </select>
-                                            </div>
-
-                                            <div class="d-flex justify-content-between">
-                                                <button type="submit" id="update_multiple_seats" name="update_multiple_seats" class="btn btn-primary btn-lg" disabled>
-                                                    <i class="fas fa-save"></i> Save Changes
-                                                </button>
-                                                <button type="button" id="clear-selection" class="btn btn-secondary">
-                                                    <i class="fas fa-times"></i> Clear Selection
-                                                </button>
-                                            </div>
-                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -563,6 +566,48 @@ include '../views/admin_header.php';
         });
     });
 </script>
+
+<!-- Modal for modifying dimensions -->
+<div class="modal fade" id="modifyDimensionsModal" tabindex="-1" role="dialog" aria-labelledby="modifyDimensionsModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modifyDimensionsModalLabel">Modify Seating Plan Dimensions</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="post" action="<?php echo SITE_URL; ?>admin/seating_plan.php?event_id=<?php echo $eventId; ?>" class="create-layout-form">
+                <input type="hidden" name="csrf_token" value="<?php echo generateCSRFToken(); ?>">
+                <div class="modal-body">
+                    <div class="alert alert-warning">
+                        <strong>Warning:</strong> Changing the dimensions will erase the current seating plan and all seat assignments.
+                    </div>
+                    <div class="form-group">
+                        <label for="modify_rows">Number of Rows</label>
+                        <input type="number" class="form-control" id="modify_rows" name="rows" min="1" value="<?php echo $dimensions['rows']; ?>" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="modify_cols">Number of Columns</label>
+                        <input type="number" class="form-control" id="modify_cols" name="cols" min="1" value="<?php echo $dimensions['cols']; ?>" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="modify_default_category_id">Default Seat Category</label>
+                        <select class="form-control" id="modify_default_category_id" name="default_category_id" required>
+                            <?php foreach ($categories as $category): ?>
+                                <option value="<?php echo $category->id; ?>"><?php echo escape($category->name); ?> (<?php echo formatCurrency($category->price); ?>)</option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="submit" name="create_layout" class="btn btn-primary">Apply Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 <?php
 // Helper function to generate colors for seat categories
