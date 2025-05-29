@@ -88,6 +88,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             setFlashMessage('error', 'Invalid layout parameters.');
             redirect(SITE_URL . 'admin/seating_plan.php?event_id=' . $eventId);
         } else {
+            // Release the lock before creating new layout
+            $eventModel->releaseLock($eventId, $_SESSION['user_id']);
+
             $seatsCreated = $seatModel->createSeatingLayout($eventId, $rows, $cols, $categoryId);
             if ($seatsCreated > 0) {
                 setFlashMessage('success', $seatsCreated . ' seats have been created.');
@@ -131,6 +134,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             setFlashMessage('error', 'Invalid parameters. Please select seats and a category.');
         }
+
+        // Release the lock before redirecting
+        $eventModel->releaseLock($eventId, $_SESSION['user_id']);
         redirect(SITE_URL . 'admin/seating_plan.php?event_id=' . $eventId);
     }
 }
@@ -411,6 +417,18 @@ include '../views/admin_header.php';
 
 <!-- Include admin seating plan script -->
 <script src="<?php echo SITE_URL; ?>assets/js/admin-seating-plan.js"></script>
+
+<!-- Add lock release script -->
+<script>
+    // Release lock when page is unloaded
+    window.addEventListener('beforeunload', function() {
+        // Use synchronous XMLHttpRequest to ensure it completes
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '<?php echo SITE_URL; ?>admin/release_lock.php', false);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.send('event_id=<?php echo $eventId; ?>&csrf_token=<?php echo generateCSRFToken(); ?>');
+    });
+</script>
 
 <!-- Modal for modifying dimensions -->
 <div class="modal fade" id="modifyDimensionsModal" tabindex="-1" role="dialog" aria-labelledby="modifyDimensionsModalLabel" aria-hidden="true">
