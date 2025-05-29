@@ -53,6 +53,13 @@ if ($event) {
 // Get all seat categories
 $categories = $seatModel->getAllSeatCategories();
 
+// Prevent changing dimensions if tickets have been sold
+$canModifyDimensions = true;
+$seatStatusCounts = $seatModel->countSeatsByStatus($eventId);
+if (!empty($seatStatusCounts['sold']) && $seatStatusCounts['sold'] > 0) {
+    $canModifyDimensions = false;
+}
+
 // Process form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Check CSRF token
@@ -69,6 +76,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Create initial seating layout
     if (isset($_POST['create_layout'])) {
+        if (!$canModifyDimensions) {
+            setFlashMessage('error', 'You cannot change the seating plan dimensions after tickets have been sold for this event.');
+            redirect(SITE_URL . 'admin/seating_plan.php?event_id=' . $eventId);
+        }
         $rows = (int)$_POST['rows'];
         $cols = (int)$_POST['cols'];
         $categoryId = (int)$_POST['default_category_id'];
@@ -184,9 +195,11 @@ include '../views/admin_header.php';
                                 </ul>
                             </div>
                             <!-- Modify Dimensions Button -->
-                            <button type="button" class="btn btn-warning btn-block mb-4" data-toggle="modal" data-target="#modifyDimensionsModal">
-                                <i class="fas fa-ruler-combined"></i> Modify Dimensions
-                            </button>
+                            <?php if ($canModifyDimensions): ?>
+                                <button type="button" class="btn btn-warning btn-block mb-4" data-toggle="modal" data-target="#modifyDimensionsModal">
+                                    <i class="fas fa-ruler-combined"></i> Modify Dimensions
+                                </button>
+                            <?php endif; ?>
                         </div>
 
                         <div class="card">
