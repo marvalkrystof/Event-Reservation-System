@@ -109,6 +109,7 @@ include '../views/admin_header.php';
                                             <tr>
                                                 <th>ID</th>
                                                 <th>Customer</th>
+                                                <th>Tickets</th>
                                                 <th>Amount</th>
                                                 <th>Date</th>
                                                 <th>Status</th>
@@ -148,6 +149,7 @@ include '../views/admin_header.php';
                                                         #<?php echo $order->order_id; ?>
                                                     </td>
                                                     <td><?php echo htmlspecialchars($order->user_name ?? 'Unknown', ENT_QUOTES, 'UTF-8'); ?></td>
+                                                    <td><?php echo $order->ticket_count; ?></td>
                                                     <td><?php echo number_format($order->total_price ?? 0, 0); ?> CZK</td>
                                                     <td><?php echo formatDate($order->order_date); ?></td>
                                                     <td><span class="badge badge-<?php echo $statusClass; ?>"><?php echo htmlspecialchars($statusName, ENT_QUOTES, 'UTF-8'); ?></span></td>
