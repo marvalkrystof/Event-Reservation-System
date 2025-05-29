@@ -105,12 +105,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $categoryId = (int)$_POST['multi_category_id'];
 
         if (!empty($selectedSeats) && $categoryId > 0) {
+            // Parse the selected seats string to get individual seat coordinates
             $seatsList = explode(',', $selectedSeats);
-            $result = $seatModel->updateSeatCategoryRange($eventId, $minRow, $maxRow, $minCol, $maxCol, $categoryId);
-            if ($result > 0) {
-                setFlashMessage('success', $result . ' seats have been updated successfully.');
+            $seatCoordinates = [];
+
+            foreach ($seatsList as $seat) {
+                if (preg_match('/^(\d+)-(\d+)$/', $seat, $matches)) {
+                    $seatCoordinates[] = [
+                        'row' => (int)$matches[1],
+                        'col' => (int)$matches[2]
+                    ];
+                }
+            }
+
+            if (!empty($seatCoordinates)) {
+                $result = $seatModel->updateSeatCategories($eventId, $seatCoordinates, $categoryId);
+                if ($result > 0) {
+                    setFlashMessage('success', $result . ' seats have been updated successfully.');
+                } else {
+                    setFlashMessage('error', 'No seats were updated. Please try again.');
+                }
             } else {
-                setFlashMessage('error', 'No seats were updated. Please try again.');
+                setFlashMessage('error', 'Invalid seat selection format.');
             }
         } else {
             setFlashMessage('error', 'Invalid parameters. Please select seats and a category.');
